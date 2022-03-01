@@ -1,6 +1,3 @@
-// Global variable🧲🧲🧲🧲🧲🧲🧲🧲🧲
-const mainDiv =document.getElementById("mainDiv");
-
 // search button 🔍🔍🔍🔍🔍🔍 
 document.getElementById("search-button").addEventListener('click', function(){
     const input=document.getElementById("input");
@@ -16,6 +13,7 @@ document.getElementById("search-button").addEventListener('click', function(){
 })
 
 const phoneSearch = (data) =>{
+    const mainDiv =document.getElementById("mainDiv");
     if(data.status ===false){
         mainDiv.innerHTML=`<h3 class="mx-auto text-center text-muted">No result found <i class="fa-solid fa-face-sad-tear"></i></h3>`
     }
@@ -33,7 +31,7 @@ const phoneSearch = (data) =>{
                       <p class="card-text">Brand: ${phone.brand}</p>
                     </div>
                     <div class="card-footer border-top-0 bg-white">
-                      <small class="">Slug: ${phone.slug}</small>
+                      <button  onclick="detailsButton('${phone.slug}')" class="btn btn-primary">Details</button>
                     </div>
                   </div>     
         `
@@ -41,3 +39,22 @@ const phoneSearch = (data) =>{
     }
     }
 }
+
+const detailsButton =(details)=>{
+    fetch(`https://openapi.programming-hero.com/api/phone/${details}`)
+    .then(res => res.json())
+    .then(data =>phoneDetails(data.data))
+}
+
+const phoneDetails =(data) =>{
+    const leftArea =document.getElementById("left-area");
+    const rightArea =document.getElementById("right-area");
+    leftArea.innerHTML=`
+    <img class="w-75 h-auto mx-auto" src="${data.image}"> 
+    `
+    rightArea.innerHTML=`
+    <h1>sdffa</h1>
+    `
+    console.log(data)
+
+}   
