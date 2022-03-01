@@ -65,14 +65,19 @@ const phoneDetails =(data) =>{
     console.log(data);
     let others ="";
     if(data.others === undefined){
-        console.log("alu")
+
     }
     else{
-        
+        others=`<p><span class="span-width">WLAN</span> : ${data.others?.WLAN}</p>
+        <p><span class="span-width">Bluetooth</span> : ${data.others?.Bluetooth}</p>
+        <p><span class="span-width">GPS</span> : ${data.others?.GPS}</p>
+        <p><span class="span-width">NFC</span> : ${data.others?.NFC}</p>   
+        <p><span class="span-width">Radio</span> : ${data.others?.Radio}</p>
+        <p><span class="span-width">USB</span> : ${data.others?.USB}</p>`
     }
 
     leftArea.innerHTML=`
-        <img class="w-75 h-auto ms-5" src="${data.image}"> 
+        <img class="w-75 h-100 ms-5" src="${data.image}"> 
     `
     rightArea.innerHTML=`
         <p><span class="span-width">Name</span> : ${data.name}</p>
@@ -82,12 +87,8 @@ const phoneDetails =(data) =>{
         <p><span class="span-width">ChipSet</span> : ${data.mainFeatures.chipSet}</p>
         <p><span class="span-width">Memory</span> : ${data.mainFeatures.memory}</p>
         <p><span class="span-width">Sensors</span> : ${sensors}</p>
-        <p><span class="span-width">WLAN</span> : ${data.others?.WLAN}</p>
-        <p><span class="span-width">Bluetooth</span> : ${data.others?.Bluetooth}</p>
-        <p><span class="span-width">GPS</span> : ${data.others?.GPS}</p>
-        <p><span class="span-width">NFC</span> : ${data.others?.NFC}</p>   
-        <p><span class="span-width">Radio</span> : ${data.others?.Radio}</p>
-        <p><span class="span-width">USB</span> : ${data.others?.USB}</p>
+        ${others}
+        
         
 
     `
