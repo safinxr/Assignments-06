@@ -37,14 +37,14 @@ const phoneSearch = (data) =>{
         const div =document.createElement("div");
         div.className="col"
         div.innerHTML=`
-                  <div class="card h-100 shadow-sm">
-                    <img class="p-3 w-75 h-auto mx-auto" src="${phone.image}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">${phone.phone_name}</h5>
-                      <p class="card-text">Brand: ${phone.brand}</p>
+                  <div class="card h-100 border-0">
+                    <img class="p-3 w-50 h-auto mx-auto" src="${phone.image}" class="card-img-top" alt="...">
+                    <div class="card-body mx-auto">
+                      <h4 class="card-title">${phone.phone_name}</h4>
+                      <p class="card-text text-center">Brand: ${phone.brand}</p>
                     </div>
-                    <div class="card-footer border-top-0 bg-white">
-                      <button  onclick="detailsButton('${phone.slug}')" class="btn btn-primary">Details</button>
+                    <div class="card-footer border-top-0 bg-white mx-auto">
+                      <button  onclick="detailsButton('${phone.slug}')" class="btn btn-primary">See Details</button>
                     </div>
                   </div>     
         `
@@ -57,6 +57,12 @@ const detailsButton =(details)=>{
     fetch(`https://openapi.programming-hero.com/api/phone/${details}`)
     .then(res => res.json())
     .then(data =>phoneDetails(data.data))
+    window.scrollTo({
+        top:400,
+        left:0,
+        behavior:"smooth"
+
+    });
 }
 
 // 📱📱📱📱phone details area📱📱📱
@@ -80,25 +86,25 @@ const phoneDetails =(data) =>{
 
     }
     else{
-        others=`<p><span class="span-width">WLAN</span> : ${data.others?.WLAN}</p>
-        <p><span class="span-width">Bluetooth</span> : ${data.others?.Bluetooth}</p>
-        <p><span class="span-width">GPS</span> : ${data.others?.GPS}</p>
-        <p><span class="span-width">NFC</span> : ${data.others?.NFC}</p>   
-        <p><span class="span-width">Radio</span> : ${data.others?.Radio}</p>
-        <p><span class="span-width">USB</span> : ${data.others?.USB}</p>`
+        others=`<p><span class="span-width fw-bold">WLAN</span> : ${data.others?.WLAN}</p>
+        <p><span class="span-width fw-bold">Bluetooth</span> : ${data.others?.Bluetooth}</p>
+        <p><span class="span-width fw-bold">GPS</span> : ${data.others?.GPS}</p>
+        <p><span class="span-width fw-bold">NFC</span> : ${data.others?.NFC}</p>   
+        <p><span class="span-width fw-bold">Radio</span> : ${data.others?.Radio}</p>
+        <p><span class="span-width fw-bold">USB</span> : ${data.others?.USB}</p>`
     }
 
     leftArea.innerHTML=`
         <img class="w-75 h-auto ms-5" src="${data.image}"> 
     `
     rightArea.innerHTML=`
-        <p><span class="span-width">Name</span> : ${data.name}</p>
-        <p><span class="span-width">ReleaseDate</span> : ${releaseDate}</p>
-        <p><span class="span-width">Storage</span> : ${data.mainFeatures.storage}</p>
-        <p><span class="span-width">DisplaySize</span> : ${data.mainFeatures.displaySize}</p>
-        <p><span class="span-width">ChipSet</span> : ${data.mainFeatures.chipSet}</p>
-        <p><span class="span-width">Memory</span> : ${data.mainFeatures.memory}</p>
-        <p><span class="span-width">Sensors</span> : ${sensors}</p>
+        <p><span class="span-width fw-bold">Name</span> : ${data.name}</p>
+        <p><span class="span-width fw-bold">ReleaseDate</span> : ${releaseDate}</p>
+        <p><span class="span-width fw-bold">Storage</span> : ${data.mainFeatures.storage}</p>
+        <p><span class="span-width fw-bold">DisplaySize</span> : ${data.mainFeatures.displaySize}</p>
+        <p><span class="span-width fw-bold">ChipSet</span> : ${data.mainFeatures.chipSet}</p>
+        <p><span class="span-width fw-bold">Memory</span> : ${data.mainFeatures.memory}</p>
+        <p><span class="span-width fw-bold">Sensors</span> : ${sensors}</p>
         ${others}
         
         
