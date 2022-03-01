@@ -77,7 +77,7 @@ const phoneDetails =(data) =>{
     }
 
     leftArea.innerHTML=`
-        <img class="w-75 h-100 ms-5" src="${data.image}"> 
+        <img class="w-75 h-auto ms-5" src="${data.image}"> 
     `
     rightArea.innerHTML=`
         <p><span class="span-width">Name</span> : ${data.name}</p>
