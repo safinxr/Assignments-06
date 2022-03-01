@@ -1,9 +1,19 @@
-// search button 🔍🔍🔍🔍🔍🔍 
+// 🧲🧲🧲🧲🧲🧲Global variable🧲🧲🧲🧲🧲🧲
+const detailDiv = document.getElementById("details-div");
+const mainDiv =document.getElementById("mainDiv");
+const leftArea =document.getElementById("left-area");
+const rightArea =document.getElementById("right-area");
+
+//  🔍🔍🔍search button🔍🔍🔍 
 document.getElementById("search-button").addEventListener('click', function(){
     const input=document.getElementById("input");
     input.style.border ="1px solid lightgray"
     if(input.value ===""){
         input.style.border ="1px solid red"
+        mainDiv.innerHTML=`<h3 class="mx-auto text-center text-muted">No result found <i class="fa-solid fa-face-sad-tear"></i></h3>`
+        detailDiv.className ="";
+        leftArea.innerHTML="";
+        rightArea.innerHTML="";
     }
     else{
         fetch(`https://openapi.programming-hero.com/api/phones?search=${input.value}`)
@@ -11,11 +21,14 @@ document.getElementById("search-button").addEventListener('click', function(){
         .then(data =>phoneSearch(data))
     }
 })
-// Search Result area 🍕🍔🍟🌭🍿🍟🍔🍕
+//  🍕🍔🍟🌭Search Result area🍿🍟🍔🍕
 const phoneSearch = (data) =>{
-    const mainDiv =document.getElementById("mainDiv");
+    
     if(data.status === false){
-        mainDiv.innerHTML=`<h3 class="mx-auto text-center text-muted">No result found <i class="fa-solid fa-face-sad-tear"></i></h3>`
+        mainDiv.innerHTML=`<h3 class="mx-auto text-center text-muted">No result found <i class="fa-solid fa-face-sad-tear"></i></h3>`;
+        detailDiv.className ="";
+        leftArea.innerHTML="";
+        rightArea.innerHTML="";
     }
     else{
         const phoneList =data.data.slice(0,19);
@@ -39,17 +52,16 @@ const phoneSearch = (data) =>{
     }
     }
 }
-// Details button area 🍑🍑🍑🍑🍑🍑🍑
+//  🍑🍑🍑Details button area🍑🍑🍑🍑
 const detailsButton =(details)=>{
     fetch(`https://openapi.programming-hero.com/api/phone/${details}`)
     .then(res => res.json())
     .then(data =>phoneDetails(data.data))
 }
 
-// phone details area📱📱📱📱📱📱📱
+// 📱📱📱📱phone details area📱📱📱
 const phoneDetails =(data) =>{
-    const leftArea =document.getElementById("left-area");
-    const rightArea =document.getElementById("right-area");
+    detailDiv.className =" shadow-lg row p-4 rounded mx-auto"
     let sensors =""
     data.mainFeatures.sensors.forEach(element => {
         sensors=element+','+sensors;
