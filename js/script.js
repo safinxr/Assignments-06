@@ -25,7 +25,7 @@ const phoneSearch = (data) =>{
         div.className="col"
         div.innerHTML=`
                   <div class="card h-100 shadow-sm">
-                    <img class="p-3" src="${phone.image}" class="card-img-top" alt="...">
+                    <img class="p-3 w-75 h-auto mx-auto" src="${phone.image}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">${phone.phone_name}</h5>
                       <p class="card-text">Brand: ${phone.brand}</p>
@@ -49,11 +49,24 @@ const detailsButton =(details)=>{
 const phoneDetails =(data) =>{
     const leftArea =document.getElementById("left-area");
     const rightArea =document.getElementById("right-area");
+    let sensors =""
+    data.mainFeatures.sensors.forEach(element => {
+        sensors=element+','+sensors;
+    });
     leftArea.innerHTML=`
-    <img class="w-75 h-auto mx-auto" src="${data.image}"> 
+    <img class="w-75 h-auto ms-5" src="${data.image}"> 
     `
     rightArea.innerHTML=`
-    <h1>sdffa</h1>
+    <p><span class="span-width">Name</span> : ${data.name}</p>
+    <p><span class="span-width">ReleaseDate</span> : ${data.releaseDate}</p>
+    <p><span class="span-width">Storage</span> : ${data.mainFeatures.storage}</p>
+    <p><span class="span-width">DisplaySize</span> : ${data.mainFeatures.displaySize}</p>
+    <p><span class="span-width">ChipSet</span> : ${data.mainFeatures.chipSet}</p>
+    <p><span class="span-width">Memory</span> : ${data.mainFeatures.memory}</p>
+    <p><span class="span-width">Sensors</span> : ${sensors}</p>
+    
+    
+
     `
     console.log(data)
 
