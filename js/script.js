@@ -74,7 +74,8 @@ const detailsButton =(details)=>{
 const phoneDetails =(data) =>{
     let sensors ="";    
     data.mainFeatures.sensors.forEach(element => {
-        sensors=element+', '+sensors;
+        sensors=element+","+sensors;
+        
     });
     let releaseDate ="";
     if(data.releaseDate === ""){
@@ -99,7 +100,7 @@ const phoneDetails =(data) =>{
     }
     spinner.style.display="none";
     detailDiv.style.boxShadow ="5px 5px 30px lightgray";
-    detailDiv.className ="row p-4 rounded mx-auto ";
+    detailDiv.className ="row p-4 rounded mx-auto";
     leftArea.innerHTML=`
         <img class="w-75 h-auto ms-5" src="${data.image}"> 
     `
