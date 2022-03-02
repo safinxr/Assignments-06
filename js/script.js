@@ -74,7 +74,7 @@ const detailsButton =(details)=>{
 const phoneDetails =(data) =>{
     let sensors ="";    
     data.mainFeatures.sensors.forEach(element => {
-        sensors=element+','+sensors;
+        sensors=element+', '+sensors;
     });
     let releaseDate ="";
     if(data.releaseDate === ""){
@@ -90,12 +90,12 @@ const phoneDetails =(data) =>{
 
     }
     else{
-        others=`<p><span class="span-width fw-bold">WLAN</span> : ${data.others?.WLAN}</p>
-        <p><span class="span-width fw-bold">Bluetooth</span> : ${data.others?.Bluetooth}</p>
-        <p><span class="span-width fw-bold">GPS</span> : ${data.others?.GPS}</p>
-        <p><span class="span-width fw-bold">NFC</span> : ${data.others?.NFC}</p>   
-        <p><span class="span-width fw-bold">Radio</span> : ${data.others?.Radio}</p>
-        <p><span class="span-width fw-bold">USB</span> : ${data.others?.USB}</p>`
+        others=`<p class="line"><span class="span-width fw-bold">WLAN</span> : ${data.others?.WLAN}</p>
+        <p class="line"><span class="span-width fw-bold">Bluetooth</span> : ${data.others?.Bluetooth}</p>
+        <p class="line"><span class="span-width fw-bold">GPS</span> : ${data.others?.GPS}</p>
+        <p class="line"><span class="span-width fw-bold">NFC</span> : ${data.others?.NFC}</p>   
+        <p class="line"><span class="span-width fw-bold">Radio</span> : ${data.others?.Radio}</p>
+        <p class="line"><span class="span-width fw-bold">USB</span> : ${data.others?.USB}</p>`
     }
     spinner.style.display="none";
     detailDiv.style.boxShadow ="5px 5px 30px lightgray";
@@ -104,13 +104,13 @@ const phoneDetails =(data) =>{
         <img class="w-75 h-auto ms-5" src="${data.image}"> 
     `
     rightArea.innerHTML=`
-        <p><span class="span-width fw-bold">Name</span> : ${data.name}</p>
-        <p><span class="span-width fw-bold">ReleaseDate</span> : ${releaseDate}</p>
-        <p><span class="span-width fw-bold">Storage</span> : ${data.mainFeatures.storage}</p>
-        <p><span class="span-width fw-bold">DisplaySize</span> : ${data.mainFeatures.displaySize}</p>
-        <p><span class="span-width fw-bold">ChipSet</span> : ${data.mainFeatures.chipSet}</p>
-        <p><span class="span-width fw-bold">Memory</span> : ${data.mainFeatures.memory}</p>
-        <p><span class="span-width fw-bold">Sensors</span> : ${sensors}</p>
+        <p class="line"><span class="span-width fw-bold">Name</span> : ${data.name}</p>
+        <p class="line"><span class="span-width fw-bold">ReleaseDate</span> : ${releaseDate}</p>
+        <p class="line"><span class="span-width fw-bold">Storage</span> : ${data.mainFeatures.storage}</p>
+        <p class="line"><span class="span-width fw-bold">DisplaySize</span> : ${data.mainFeatures.displaySize}</p>
+        <p class="line"><span class="span-width fw-bold">ChipSet</span> : ${data.mainFeatures.chipSet}</p>
+        <p class="line"><span class="span-width fw-bold">Memory</span> : ${data.mainFeatures.memory}</p>
+        <p class="line"><span class="span-width fw-bold">Sensors</span> : ${sensors}</p>
         ${others}
         
         
