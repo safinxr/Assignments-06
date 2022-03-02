@@ -38,14 +38,14 @@ const phoneSearch = (data) =>{
         const div =document.createElement("div");
         div.className="col"
         div.innerHTML=`
-                  <div class="card h-100 border-0">
+                  <div class="card h-100 border-0 shadow-lg">
                     <img class="p-3 w-50 h-auto mx-auto" src="${phone.image}" class="card-img-top" alt="...">
                     <div class="card-body mx-auto">
                       <h4 class="card-title">${phone.phone_name}</h4>
                       <p class="card-text text-center">Brand: ${phone.brand}</p>
                     </div>
                     <div class="card-footer border-top-0 bg-white mx-auto">
-                      <button  onclick="detailsButton('${phone.slug}')" class="btn btn-primary">See Details</button>
+                      <button  onclick="detailsButton('${phone.slug}')" class="btn btn-primary mb-3">See Details</button>
                     </div>
                   </div>     
         `
