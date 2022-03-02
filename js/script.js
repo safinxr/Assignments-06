@@ -2,18 +2,22 @@
 const detailDiv = document.getElementById("details-div");
 const mainDiv =document.getElementById("mainDiv");
 const leftArea =document.getElementById("left-area");
+const spinner =document.getElementById("spinner");
 const rightArea =document.getElementById("right-area");
+const noResult =`<h3 class="mx-auto text-center text-muted">No result found <i class="fa-solid fa-face-sad-tear"></i></h3>`;
 
 //  🔍🔍🔍search button🔍🔍🔍 
 document.getElementById("search-button").addEventListener('click', function(){
     const input=document.getElementById("input");
     input.style.border ="1px solid lightgray"
+    leftArea.innerHTML="";
+    rightArea.innerHTML="";
+    detailDiv.className ="";
+    spinner.style.display="block";
     if(input.value ===""){
+        spinner.style.display="none"
         input.style.border ="1px solid red"
-        mainDiv.innerHTML=`<h3 class="mx-auto text-center text-muted">No result found <i class="fa-solid fa-face-sad-tear"></i></h3>`
-        detailDiv.className ="";
-        leftArea.innerHTML="";
-        rightArea.innerHTML="";
+        mainDiv.innerHTML=noResult
     }
     else{
         fetch(`https://openapi.programming-hero.com/api/phones?search=${input.value}`)
@@ -23,12 +27,9 @@ document.getElementById("search-button").addEventListener('click', function(){
 })
 //  🍕🍔🍟🌭Search Result area🍿🍟🍔🍕
 const phoneSearch = (data) =>{
-    
+    spinner.style.display="none";
     if(data.status === false){
-        mainDiv.innerHTML=`<h3 class="mx-auto text-center text-muted">No result found <i class="fa-solid fa-face-sad-tear"></i></h3>`;
-        detailDiv.className ="";
-        leftArea.innerHTML="";
-        rightArea.innerHTML="";
+        mainDiv.innerHTML=noResult
     }
     else{
         const phoneList =data.data.slice(0,19);
@@ -54,6 +55,10 @@ const phoneSearch = (data) =>{
 }
 //  🍑🍑🍑Details button area🍑🍑🍑🍑
 const detailsButton =(details)=>{
+    detailDiv.style.boxShadow ="none";
+    leftArea.innerHTML="";
+    rightArea.innerHTML="";
+    spinner.style.display="block";
     fetch(`https://openapi.programming-hero.com/api/phone/${details}`)
     .then(res => res.json())
     .then(data =>phoneDetails(data.data))
@@ -67,8 +72,7 @@ const detailsButton =(details)=>{
 
 // 📱📱📱📱phone details area📱📱📱
 const phoneDetails =(data) =>{
-    detailDiv.className =" shadow-lg row p-4 rounded mx-auto"
-    let sensors =""
+    let sensors ="";    
     data.mainFeatures.sensors.forEach(element => {
         sensors=element+','+sensors;
     });
@@ -93,7 +97,9 @@ const phoneDetails =(data) =>{
         <p><span class="span-width fw-bold">Radio</span> : ${data.others?.Radio}</p>
         <p><span class="span-width fw-bold">USB</span> : ${data.others?.USB}</p>`
     }
-
+    spinner.style.display="none";
+    detailDiv.style.boxShadow ="5px 5px 30px lightgray";
+    detailDiv.className ="row p-4 rounded mx-auto ";
     leftArea.innerHTML=`
         <img class="w-75 h-auto ms-5" src="${data.image}"> 
     `

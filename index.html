@@ -22,7 +22,7 @@
               
         </div>
         <div class="top-banner d-flex justify-content-center align-items-center ">
-            <div class="input-group w-50">
+            <div class="input-group input-width">
                 <input id="input" type="search" class="form-control" placeholder="search">
                 <button class="btn btn-primary px-3" type="button" id="search-button"><i class="text-white fa-solid fa-magnifying-glass"></i></button>
             </div>
@@ -35,6 +35,11 @@
 
         <!-- 📃📃📃📃📃Details section📃📃📃📃📃 --> 
         <section class="container mt-5 ">
+            <div id="spinner" class="spinner-div">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+            </div>
             <div id="details-div">
                 <div id="left-area" class="col col-md-5">
 
@@ -45,7 +50,7 @@
             </div>
         </section>
         <!--  🔍🔍🔍search result🔍🔍🔍 -->
-        <section class="container my-5">
+        <section class="container my-5">            
             <div id="mainDiv" class="row row-cols-1 row-cols-md-3 g-3">
 
             </div>
